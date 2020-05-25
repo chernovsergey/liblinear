@@ -2542,12 +2542,15 @@ model* train(const problem *prob, const parameter *param)
 				for(; k<sub_prob.l; k++)
 					sub_prob.y[k] = -1;
 
-				if(param->init_sol != NULL)
+				if(param->init_sol != NULL){
+					printf("Warm start: init_sol != NULL. ok!\n");
 					for(i=0;i<w_size;i++)
 						model_->w[i] = param->init_sol[i];
-				else
+				}
+				else {
 					for(i=0;i<w_size;i++)
 						model_->w[i] = 0;
+				}
 
 				train_one(&sub_prob, param, model_->w, weighted_C[0], weighted_C[1]);
 			}
